@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/home_page.dart';
+import 'package:grocery_task/home_page.dart';
 
 class GroceryApp extends StatelessWidget {
   const GroceryApp({super.key});

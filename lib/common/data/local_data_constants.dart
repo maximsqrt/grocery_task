@@ -1,6 +1,6 @@
-import 'package:grocery_task/home/models/category.dart';
-import 'package:grocery_task/home/models/product.dart';
-import 'package:grocery_task/home/models/product_badge.dart';
+import 'package:grocery_task/common/domain/category.dart';
+import 'package:grocery_task/common/domain/product.dart';
+import 'package:grocery_task/common/domain/product_badge.dart';
 
 const List<Category> categoriesMock = [
   Category(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/models/category.dart';
+import 'package:grocery_task/common/domain/category.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({

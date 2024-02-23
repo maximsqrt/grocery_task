@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/controllers/cart_controller.dart';
-import 'package:grocery_task/home/controllers/product_controller.dart';
-import 'package:grocery_task/home/controllers/wishlist_controller.dart';
-import 'package:grocery_task/home/search_field.dart';
-import 'package:grocery_task/home/widgets/action_headline.dart';
-import 'package:grocery_task/home/widgets/categories_section.dart';
-import 'package:grocery_task/home/widgets/hero_image.dart';
-import 'package:grocery_task/home/widgets/product_item.dart';
+import 'package:grocery_task/features/overview/presentation/action_headline.dart';
+import 'package:grocery_task/features/overview/presentation/categories_section.dart';
+import 'package:grocery_task/features/overview/presentation/hero_image.dart';
+import 'package:grocery_task/features/overview/presentation/product_controller.dart';
+import 'package:grocery_task/features/overview/presentation/product_item.dart';
+import 'package:grocery_task/features/overview/presentation/search_field.dart';
 import 'package:provider/provider.dart';
 
 class OverviewPage extends StatelessWidget {
@@ -16,8 +14,6 @@ class OverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ProductController productController =
         context.watch<ProductController>();
-    final cartController = context.watch<CartController>();
-    final wishlistController = context.watch<WishlistController>();
 
     return ListView(
       children: [

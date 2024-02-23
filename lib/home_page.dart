@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/cart_page.dart';
-import 'package:grocery_task/home/controllers/cart_controller.dart';
-import 'package:grocery_task/home/controllers/wishlist_controller.dart';
-import 'package:grocery_task/home/overview_page.dart';
-import 'package:grocery_task/home/wishlist_page.dart';
+import 'package:grocery_task/common/presentation/cart_controller.dart';
+import 'package:grocery_task/common/presentation/wishlist_controller.dart';
+import 'package:grocery_task/features/cart/presentation/cart_page.dart';
+import 'package:grocery_task/features/overview/presentation/overview_page.dart';
+import 'package:grocery_task/features/wishlist/presentation/wishlist_page.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/controllers/category_controller.dart';
-import 'package:grocery_task/home/widgets/category_item.dart';
+import 'package:grocery_task/features/overview/presentation/category_controller.dart';
+import 'package:grocery_task/features/overview/presentation/category_item.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesSection extends StatelessWidget {

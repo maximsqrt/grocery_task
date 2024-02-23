@@ -1,4 +1,4 @@
-import 'package:grocery_task/home/models/product.dart';
+import 'package:grocery_task/common/domain/product.dart';
 
 class CartItem {
   CartItem({

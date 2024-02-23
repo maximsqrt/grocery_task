@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/controllers/cart_controller.dart';
-import 'package:grocery_task/home/controllers/wishlist_controller.dart';
-import 'package:grocery_task/home/models/product.dart';
+import 'package:grocery_task/common/domain/product.dart';
+import 'package:grocery_task/common/presentation/cart_controller.dart';
+import 'package:grocery_task/common/presentation/wishlist_controller.dart';
 import 'package:provider/provider.dart';
 
 class ProductItem extends StatelessWidget {
@@ -18,7 +18,7 @@ class ProductItem extends StatelessWidget {
     final WishlistController wishlistController =
         Provider.of<WishlistController>(context);
 
-    final productInCartCount = cartController.getQuantityForProduct(product);
+    final cartProductCount = cartController.getQuantityForProduct(product);
     final isFavorite = wishlistController.containsProduct(product);
 
     return Container(
@@ -105,7 +105,7 @@ class ProductItem extends StatelessWidget {
             ),
           ),
           const Divider(),
-          if (productInCartCount > 0)
+          if (cartProductCount > 0)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -115,9 +115,7 @@ class ProductItem extends StatelessWidget {
                   },
                   icon: const Icon(Icons.remove),
                 ),
-                Text(
-                  productInCartCount.toString(),
-                ),
+                Text(cartProductCount.toString()),
                 IconButton(
                   onPressed: () {
                     cartController.addProduct(product);

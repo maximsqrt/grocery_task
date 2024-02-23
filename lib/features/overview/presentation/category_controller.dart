@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:grocery_task/home/models/category.dart';
-import 'package:grocery_task/home/repositories/category_repository.dart';
+import 'package:grocery_task/common/domain/category.dart';
+import 'package:grocery_task/features/overview/data/category_repository.dart';
 
 class CategoryController extends ChangeNotifier {
   CategoryController({required CategoryRepository categoryRepository})

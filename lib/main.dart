@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_task/common/presentation/cart_controller.dart';
+import 'package:grocery_task/common/presentation/wishlist_controller.dart';
+import 'package:grocery_task/features/overview/data/category_repository.dart';
+import 'package:grocery_task/features/overview/data/product_repository.dart';
+import 'package:grocery_task/features/overview/presentation/category_controller.dart';
+import 'package:grocery_task/features/overview/presentation/product_controller.dart';
 import 'package:grocery_task/grocery_app.dart';
-import 'package:grocery_task/home/controllers/cart_controller.dart';
-import 'package:grocery_task/home/controllers/category_controller.dart';
-import 'package:grocery_task/home/controllers/product_controller.dart';
-import 'package:grocery_task/home/controllers/wishlist_controller.dart';
-import 'package:grocery_task/home/repositories/category_repository.dart';
-import 'package:grocery_task/home/repositories/product_repository.dart';
 import 'package:provider/provider.dart';
 
 void main() {

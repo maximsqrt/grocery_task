@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:grocery_task/home/models/product.dart';
+import 'package:grocery_task/common/domain/product.dart';
 
 class WishlistController extends ChangeNotifier {
   WishlistController();
