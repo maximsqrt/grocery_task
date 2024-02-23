@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/models/cart_item.dart';
-import 'package:grocery_task/home/models/cart_model.dart';
+import 'package:grocery_task/home/controllers/cart_controller.dart';
+import 'package:grocery_task/home/controllers/category_controller.dart';
+import 'package:grocery_task/home/controllers/product_controller.dart';
+import 'package:grocery_task/home/controllers/wishlist_controller.dart';
 import 'package:grocery_task/home/models/product.dart';
-import 'package:grocery_task/home/repository/products_repository.dart';
+import 'package:grocery_task/home/repositories/category_repository.dart';
+import 'package:grocery_task/home/repositories/product_repository.dart';
 import 'package:grocery_task/home/widgets/action_headline.dart';
 import 'package:grocery_task/home/widgets/categories_section.dart';
 import 'package:grocery_task/home/widgets/hero_image.dart';
@@ -17,50 +20,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _products = ProductsRepository().getProducts();
+  final ProductController productController =
+      ProductController(productRepository: ProductRepository());
 
-  final CartController cart = CartController(initialItems: []);
+  final CategoryController categoryController =
+      CategoryController(categoryRepository: CategoryRepository());
 
-  final List<Product> wishlist = [];
+  final CartController cartController = CartController();
+
+  final WishlistController wishlistController = WishlistController();
 
   void onAddItem(Product product) {
     setState(() {
-      if (cart.items.any((element) => element.product == product)) {
-        cart.items
-            .firstWhere((element) => element.product == product)
-            .quantity++;
-        return;
-      } else {
-        cart.items.add(
-          CartItem(product: product, quantity: 1),
-        );
-      }
+      cartController.addProduct(product);
     });
   }
 
   void onRemoveItem(Product product) {
     setState(() {
-      if (cart.items.any((element) => element.product == product) &&
-          cart.items
-                  .firstWhere((element) => element.product == product)
-                  .quantity >
-              1) {
-        cart.items
-            .firstWhere((element) => element.product == product)
-            .quantity--;
-        return;
-      } else {
-        cart.items.removeWhere((element) => element.product == product);
-      }
+      cartController.removeProduct(product);
     });
   }
 
   void toggleFavoriteList(Product product) {
     setState(() {
-      if (wishlist.contains(product)) {
-        wishlist.remove(product);
+      if (wishlistController.containsProduct(product)) {
+        wishlistController.removeProduct(product);
       } else {
-        wishlist.add(product);
+        wishlistController.addProduct(product);
       }
     });
   }
@@ -98,24 +85,18 @@ class _HomePageState extends State<HomePage> {
                   runSpacing: 20,
                   alignment: WrapAlignment.spaceBetween,
                   children: [
-                    for (final product in _products)
+                    for (final product in productController.products)
                       ProductItem(
                         product: product,
-                        quantity: cart.items
-                            .firstWhere((element) => element.product == product,
-                                orElse: () =>
-                                    CartItem(product: product, quantity: 0))
-                            .quantity,
+                        quantity: cartController.getQuantityForProduct(product),
                         onAddToCart: () => onAddItem(product),
                         onRemoveItem: () => onRemoveItem(product),
                         toggleFavorite: () => toggleFavoriteList(product),
-                        isFavorite: wishlist.contains(product),
+                        isFavorite: wishlistController.containsProduct(product),
                       ),
                   ],
                 ),
-                const SizedBox(
-                  height: 22,
-                ),
+                const SizedBox(height: 22),
               ],
             ),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/repository/categories_repository.dart';
+import 'package:grocery_task/home/repositories/category_repository.dart';
 import 'package:grocery_task/home/widgets/action_headline.dart';
 import 'package:grocery_task/home/widgets/category_item.dart';
 
