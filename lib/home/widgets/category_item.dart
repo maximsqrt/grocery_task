@@ -18,7 +18,7 @@ class CategoryItem extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundColor: category.color.withOpacity(0.2),
+            backgroundColor: Color(category.colorValue).withOpacity(0.2),
             child: Image.asset(
               category.iconAsset,
               height: 28,

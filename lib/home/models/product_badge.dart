@@ -1,11 +1,9 @@
-class Category {
-  const Category({
+class ProductBadge {
+  const ProductBadge({
     required this.name,
-    required this.iconAsset,
     required this.colorValue,
   });
 
   final String name;
-  final String iconAsset;
   final int colorValue;
 }

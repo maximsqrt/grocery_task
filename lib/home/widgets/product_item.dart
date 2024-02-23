@@ -42,12 +42,12 @@ class ProductItem extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
-                      color: product.badge!.color.withOpacity(0.2),
+                      color: Color(product.badge!.colorValue).withOpacity(0.2),
                     ),
                     child: Text(
                       product.badge!.name,
                       style: TextStyle(
-                        color: product.badge!.color,
+                        color: Color(product.badge!.colorValue),
                         fontSize: 12,
                       ),
                     ),
@@ -72,7 +72,7 @@ class ProductItem extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     CircleAvatar(
-                      backgroundColor: product.color,
+                      backgroundColor: Color(product.colorValue),
                       radius: 50,
                     ),
                     Positioned(

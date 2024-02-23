@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/models/cart.dart';
+import 'package:grocery_task/home/models/cart_item.dart';
+import 'package:grocery_task/home/models/cart_model.dart';
 import 'package:grocery_task/home/models/product.dart';
 import 'package:grocery_task/home/repository/products_repository.dart';
 import 'package:grocery_task/home/widgets/action_headline.dart';
@@ -18,7 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _products = ProductsRepository().getProducts();
 
-  final Cart cart = Cart([]);
+  final CartController cart = CartController(initialItems: []);
 
   final List<Product> wishlist = [];
 

@@ -5,6 +5,7 @@ import 'package:grocery_task/home/widgets/category_item.dart';
 
 class CategoriesSection extends StatelessWidget {
   CategoriesSection({super.key});
+
   final _categories = CategoryRepository().getCategories();
 
   @override
