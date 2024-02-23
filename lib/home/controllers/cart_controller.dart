@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:grocery_task/home/models/product.dart';
 
-class CartController {
+class CartController extends ChangeNotifier {
   CartController();
 
   final List<Product> _items = [];
@@ -9,9 +10,13 @@ class CartController {
 
   void addProduct(Product product) {
     _items.add(product);
+    notifyListeners();
   }
 
-  void removeProduct(Product product) => _items.remove(product);
+  void removeProduct(Product product) {
+    _items.remove(product);
+    notifyListeners();
+  }
 
   int getQuantityForProduct(Product product) =>
       _items.where((element) => element == product).length;

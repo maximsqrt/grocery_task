@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_task/home/controllers/cart_controller.dart';
+import 'package:grocery_task/home/controllers/wishlist_controller.dart';
 import 'package:grocery_task/home/models/product.dart';
+import 'package:provider/provider.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
     super.key,
     required this.product,
-    required this.quantity,
-    required this.onAddToCart,
-    required this.onRemoveItem,
-    required this.toggleFavorite,
-    required this.isFavorite,
   });
 
   final Product product;
-  final int quantity;
 
-  final VoidCallback onAddToCart;
-
-  final VoidCallback onRemoveItem;
-
-  final VoidCallback toggleFavorite;
-
-  final bool isFavorite;
   @override
   Widget build(BuildContext context) {
+    final CartController cartController = Provider.of<CartController>(context);
+    final WishlistController wishlistController =
+        Provider.of<WishlistController>(context);
+
+    final productInCartCount = cartController.getQuantityForProduct(product);
+    final isFavorite = wishlistController.containsProduct(product);
+
     return Container(
       width: 170,
       decoration: BoxDecoration(
@@ -55,7 +52,9 @@ class ProductItem extends StatelessWidget {
                 ),
               const Spacer(),
               IconButton(
-                onPressed: toggleFavorite,
+                onPressed: () {
+                  wishlistController.toggleProduct(product);
+                },
                 icon: Icon(
                   isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
                   color: isFavorite ? Colors.red : null,
@@ -106,22 +105,22 @@ class ProductItem extends StatelessWidget {
             ),
           ),
           const Divider(),
-          if (quantity > 0)
+          if (productInCartCount > 0)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
                   onPressed: () {
-                    onRemoveItem();
+                    cartController.removeProduct(product);
                   },
                   icon: const Icon(Icons.remove),
                 ),
                 Text(
-                  quantity.toString(),
+                  productInCartCount.toString(),
                 ),
                 IconButton(
                   onPressed: () {
-                    onAddToCart();
+                    cartController.addProduct(product);
                   },
                   icon: const Icon(Icons.add),
                 ),
@@ -130,7 +129,7 @@ class ProductItem extends StatelessWidget {
           else
             TextButton(
               onPressed: () {
-                onAddToCart();
+                cartController.addProduct(product);
               },
               child: const Text('Add to cart'),
             ),

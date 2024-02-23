@@ -1,28 +1,31 @@
+import 'package:flutter/cupertino.dart';
 import 'package:grocery_task/home/models/product.dart';
 
-class WishlistController {
+class WishlistController extends ChangeNotifier {
   WishlistController();
 
   final List<Product> _items = [];
 
   List<Product> get products => _items;
 
-  void addProduct(Product product) {
+  void _addProduct(Product product) {
     _items.add(product);
+    notifyListeners();
   }
 
-  void removeProduct(Product product) => _items.remove(product);
-
-  int getQuantityForProduct(Product product) =>
-      _items.where((element) => element == product).length;
+  void _removeProduct(Product product) {
+    _items.remove(product);
+    notifyListeners();
+  }
 
   bool containsProduct(Product product) => _items.contains(product);
 
   void toggleProduct(Product product) {
     if (containsProduct(product)) {
-      removeProduct(product);
+      _removeProduct(product);
     } else {
-      addProduct(product);
+      _addProduct(product);
     }
+    notifyListeners();
   }
 }

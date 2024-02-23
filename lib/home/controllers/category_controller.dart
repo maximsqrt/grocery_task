@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:grocery_task/home/models/category.dart';
 import 'package:grocery_task/home/repositories/category_repository.dart';
 
-class CategoryController {
+class CategoryController extends ChangeNotifier {
   CategoryController({required CategoryRepository categoryRepository})
       : _categoryRepository = categoryRepository {
     // Fetch and add initial categories.

@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_task/home/repositories/category_repository.dart';
-import 'package:grocery_task/home/widgets/action_headline.dart';
+import 'package:grocery_task/home/controllers/category_controller.dart';
 import 'package:grocery_task/home/widgets/category_item.dart';
+import 'package:provider/provider.dart';
 
 class CategoriesSection extends StatelessWidget {
-  CategoriesSection({super.key});
-
-  final _categories = CategoryRepository().getCategories();
+  const CategoriesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const ActionHeadline(title: 'Categories'),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 100,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: _categories.length,
-            itemBuilder: (context, index) {
-              final category = _categories[index];
-              return CategoryItem(category: category);
-            },
-          ),
-        ),
-      ],
+    final categories = context.read<CategoryController>().categories;
+
+    return SizedBox(
+      height: 100,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final category = categories[index];
+          return CategoryItem(category: category);
+        },
+      ),
     );
   }
 }

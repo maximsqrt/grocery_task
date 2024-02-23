@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:grocery_task/home/models/product.dart';
 import 'package:grocery_task/home/repositories/product_repository.dart';
 
-class ProductController {
+class ProductController extends ChangeNotifier {
   ProductController({required productRepository})
       : _productsRepository = productRepository {
     // Fetch products initially
