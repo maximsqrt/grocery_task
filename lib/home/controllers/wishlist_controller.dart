@@ -17,4 +17,12 @@ class WishlistController {
       _items.where((element) => element == product).length;
 
   bool containsProduct(Product product) => _items.contains(product);
+
+  void toggleProduct(Product product) {
+    if (containsProduct(product)) {
+      removeProduct(product);
+    } else {
+      addProduct(product);
+    }
+  }
 }
