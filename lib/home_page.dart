@@ -35,15 +35,16 @@ class _HomePageState extends State<HomePage> {
           ][currentScreenIndex],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
+          showSelectedLabels: true,
           showUnselectedLabels: false,
+          currentIndex: currentScreenIndex,
           onTap: (value) => setState(() {
             currentScreenIndex = value;
           }),
           items: [
             const BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.home),
-              label: 'Home',
+              label: 'Overview',
             ),
             BottomNavigationBarItem(
               icon: Badge(

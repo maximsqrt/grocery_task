@@ -9,22 +9,27 @@ import 'package:grocery_task/grocery_app.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<ProductController>(
-      create: (context) => ProductController(
-        productRepository: ProductRepository(),
-      ),
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ProductController>(
+          create: (context) => ProductController(
+            productRepository: ProductRepository(),
+          ),
+        ),
+        ChangeNotifierProvider<CategoryController>(
+          create: (context) => CategoryController(
+            categoryRepository: CategoryRepository(),
+          ),
+        ),
+        ChangeNotifierProvider<CartController>(
+          create: (context) => CartController(),
+        ),
+        ChangeNotifierProvider<WishlistController>(
+          create: (context) => WishlistController(),
+        ),
+      ],
+      child: const GroceryApp(),
     ),
-    ChangeNotifierProvider<CategoryController>(
-      create: (context) => CategoryController(
-        categoryRepository: CategoryRepository(),
-      ),
-    ),
-    ChangeNotifierProvider<CartController>(
-      create: (context) => CartController(),
-    ),
-    ChangeNotifierProvider<WishlistController>(
-      create: (context) => WishlistController(),
-    ),
-  ], child: const GroceryApp()));
+  );
 }
