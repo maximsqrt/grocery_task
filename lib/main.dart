@@ -3,8 +3,8 @@ import 'package:grocery_task/common/presentation/cart_controller.dart';
 import 'package:grocery_task/common/presentation/wishlist_controller.dart';
 import 'package:grocery_task/features/overview/data/category_repository.dart';
 import 'package:grocery_task/features/overview/data/product_repository.dart';
-import 'package:grocery_task/features/overview/presentation/category_controller.dart';
-import 'package:grocery_task/features/overview/presentation/product_controller.dart';
+import 'package:grocery_task/features/overview/presentation/controllers/category_controller.dart';
+import 'package:grocery_task/features/overview/presentation/controllers/product_controller.dart';
 import 'package:grocery_task/grocery_app.dart';
 import 'package:provider/provider.dart';
 

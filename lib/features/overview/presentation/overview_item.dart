@@ -4,8 +4,8 @@ import 'package:grocery_task/common/presentation/cart_controller.dart';
 import 'package:grocery_task/common/presentation/wishlist_controller.dart';
 import 'package:provider/provider.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({
+class OverviewItem extends StatelessWidget {
+  const OverviewItem({
     super.key,
     required this.product,
   });

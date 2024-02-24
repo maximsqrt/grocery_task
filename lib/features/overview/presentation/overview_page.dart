@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_task/features/overview/presentation/action_headline.dart';
 import 'package:grocery_task/features/overview/presentation/categories_section.dart';
+import 'package:grocery_task/features/overview/presentation/controllers/product_controller.dart';
 import 'package:grocery_task/features/overview/presentation/hero_image.dart';
-import 'package:grocery_task/features/overview/presentation/product_controller.dart';
-import 'package:grocery_task/features/overview/presentation/product_item.dart';
+import 'package:grocery_task/features/overview/presentation/overview_item.dart';
 import 'package:grocery_task/features/overview/presentation/search_field.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +32,7 @@ class OverviewPage extends StatelessWidget {
           alignment: WrapAlignment.spaceBetween,
           children: [
             for (final product in productController.products)
-              ProductItem(product: product),
+              OverviewItem(product: product),
           ],
         ),
         const SizedBox(height: 22),
