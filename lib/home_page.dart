@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             ),
             BottomNavigationBarItem(
               icon: Badge(
-                label: Text(cartController.items.length.toString()),
+                label: Text(cartController.totalItems.toString()),
                 child: const Icon(CupertinoIcons.cart),
               ),
               label: 'Cart',

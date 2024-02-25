@@ -13,9 +13,9 @@ class CartPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.separated(
-        itemCount: cartController.items.length,
+        itemCount: cartController.cartProducts.length,
         itemBuilder: (context, index) =>
-            CartItem(product: cartController.items[index]),
+            CartItem(cartProduct: cartController.cartProducts[index]),
         separatorBuilder: (context, index) => const SizedBox(height: 12.0),
       ),
     );

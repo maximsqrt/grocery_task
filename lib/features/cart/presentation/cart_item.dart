@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:grocery_task/common/domain/product.dart';
 import 'package:grocery_task/common/presentation/cart_controller.dart';
 import 'package:grocery_task/common/presentation/wishlist_controller.dart';
+import 'package:grocery_task/features/cart/domain/cart_product.dart';
 import 'package:provider/provider.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
-    required this.product,
+    required this.cartProduct,
   });
 
-  final Product product;
+  final CartProduct cartProduct;
+  Product get product => cartProduct.product;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,6 @@ class CartItem extends StatelessWidget {
     final WishlistController wishlistController =
         Provider.of<WishlistController>(context);
 
-    final cartProductCount = cartController.getQuantityForProduct(product);
     final isFavorite = wishlistController.containsProduct(product);
 
     return Container(
@@ -92,7 +93,7 @@ class CartItem extends StatelessWidget {
                   style: const TextStyle(color: Colors.grey),
                 ),
                 Text(
-                  '\$${product.price}',
+                  '\$${product.price.toStringAsFixed(2)}',
                   style: const TextStyle(color: Colors.green),
                 ),
               ],
@@ -116,7 +117,7 @@ class CartItem extends StatelessWidget {
                   },
                   icon: const Icon(Icons.add),
                 ),
-                Text(cartProductCount.toString()),
+                Text(cartProduct.quantity.toString()),
                 IconButton(
                   onPressed: () {
                     cartController.removeProduct(product);

@@ -1,7 +1,8 @@
 import 'package:grocery_task/common/domain/product.dart';
 
-class CartItem {
-  CartItem({
+class CartProduct {
+  /// Used to store a product and its quantity in the cart.
+  CartProduct({
     required this.product,
     required this.quantity,
   });

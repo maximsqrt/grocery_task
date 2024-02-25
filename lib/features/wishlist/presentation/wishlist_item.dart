@@ -92,7 +92,7 @@ class WishlistItem extends StatelessWidget {
                   style: const TextStyle(color: Colors.grey),
                 ),
                 Text(
-                  '\$${product.price}',
+                  '\$${product.price.toStringAsFixed(2)}',
                   style: const TextStyle(color: Colors.green),
                 ),
               ],
