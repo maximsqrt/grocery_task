@@ -96,6 +96,8 @@ class OverviewItem extends StatelessWidget {
                   product.name,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 16),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   product.description,

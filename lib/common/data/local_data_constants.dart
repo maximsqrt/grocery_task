@@ -84,7 +84,7 @@ final List<Product> productsMock = [
     ),
   ),
   const Product(
-    name: 'Fresh Broccoli',
+    name: 'Fresh Green Broccoli',
     description: '3 lbs',
     price: 1,
     imageAsset: 'assets/images/broccoli.png',

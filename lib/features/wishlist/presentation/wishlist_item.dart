@@ -47,14 +47,59 @@ class WishlistItem extends StatelessWidget {
               ),
             ),
           ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: IconButton(
+            onPressed: () {
+              wishlistController.toggleProduct(product);
+            },
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
+              color: isFavorite ? Colors.red : null,
+            ),
+          ),
+        ),
+        // Left Top Right Bottom
+        Positioned(
+          right: 0,
+          bottom: 0,
+          child: !cartController.containsProduct(product)
+              ? IconButton(
+                  onPressed: () {
+                    cartController.addProduct(product);
+                  },
+                  icon: const Icon(
+                    Icons.shopping_cart_checkout_sharp,
+                  ),
+                )
+              : Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        cartController.addProduct(product);
+                      },
+                      icon: const Icon(Icons.add),
+                    ),
+                    Text(cartProductCount.toString()),
+                    IconButton(
+                      onPressed: () {
+                        cartController.removeProduct(product);
+                      },
+                      icon: const Icon(Icons.remove),
+                    ),
+                  ],
+                ),
+        ),
         Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  const SizedBox(height: 16),
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
@@ -75,70 +120,34 @@ class WishlistItem extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 8),
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  product.name,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 16),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  product.description,
-                  style: const TextStyle(color: Colors.grey),
-                ),
-                Text(
-                  '\$${product.price.toStringAsFixed(2)}',
-                  style: const TextStyle(color: Colors.green),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.name,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    product.description,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                  Text(
+                    '\$${product.price.toStringAsFixed(2)}',
+                    style: const TextStyle(color: Colors.green),
+                  ),
+                ],
+              ),
             ),
-            const Spacer(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    wishlistController.toggleProduct(product);
-                  },
-                  icon: Icon(
-                    isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
-                    color: isFavorite ? Colors.red : null,
-                  ),
-                ),
-                if (!cartController.containsProduct(product))
-                  IconButton(
-                    onPressed: () {
-                      cartController.addProduct(product);
-                    },
-                    icon: const Icon(
-                      Icons.shopping_cart_checkout_sharp,
-                    ),
-                  )
-                else
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          cartController.addProduct(product);
-                        },
-                        icon: const Icon(Icons.add),
-                      ),
-                      Text(cartProductCount.toString()),
-                      IconButton(
-                        onPressed: () {
-                          cartController.removeProduct(product);
-                        },
-                        icon: const Icon(Icons.remove),
-                      ),
-                    ],
-                  ),
-              ],
+              children: [],
             )
           ],
         ),

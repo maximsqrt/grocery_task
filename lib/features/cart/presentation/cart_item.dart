@@ -49,7 +49,7 @@ class CartItem extends StatelessWidget {
             ),
           ),
         Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.all(12.0),
@@ -79,26 +79,27 @@ class CartItem extends StatelessWidget {
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  product.name,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 16),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  product.description,
-                  style: const TextStyle(color: Colors.grey),
-                ),
-                Text(
-                  '\$${product.price.toStringAsFixed(2)}',
-                  style: const TextStyle(color: Colors.green),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.name,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    product.description,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                  Text(
+                    '\$${product.price.toStringAsFixed(2)}',
+                    style: const TextStyle(color: Colors.green),
+                  ),
+                ],
+              ),
             ),
-            const Spacer(),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
