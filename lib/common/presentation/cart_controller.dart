@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
+import 'package:grocery_task/common/data/cart_repository.dart';
 import 'package:grocery_task/common/domain/product.dart';
 import 'package:grocery_task/features/cart/domain/cart_product.dart';
 
 class CartController extends ChangeNotifier {
-  CartController();
+  CartController({required CartRepository cartRepository})
+      : _cartRepository = cartRepository {
+    _listenForCartProducts();
+  }
 
+  final CartRepository _cartRepository;
   final List<CartProduct> _cartProducts = [];
 
   /// Returns the CartProducts (product + quantity) in the cart.
@@ -16,23 +21,13 @@ class CartController extends ChangeNotifier {
   /// Returns the total number of items in the cart (sum of the quantities of all products).
   int get totalItems => _cartProducts.fold(0, (prev, cp) => prev + cp.quantity);
 
-  void addProduct(Product product) {
-    if (containsProduct(product)) {
-      _cartProducts.firstWhere((cp) => cp.product == product).quantity++;
-    } else {
-      _cartProducts.add(CartProduct(product: product, quantity: 1));
-    }
+  void addProduct(Product product) async {
+    await _cartRepository.addProduct(product);
     notifyListeners();
   }
 
-  void removeProduct(Product product) {
-    if (containsProduct(product)) {
-      _cartProducts.firstWhere((cp) => cp.product == product).quantity--;
-      if (_cartProducts.firstWhere((cp) => cp.product == product).quantity ==
-          0) {
-        _cartProducts.removeWhere((cp) => cp.product == product);
-      }
-    }
+  void removeProduct(Product product) async {
+    await _cartRepository.removeProduct(product);
     notifyListeners();
   }
 
@@ -45,4 +40,12 @@ class CartController extends ChangeNotifier {
 
   bool containsProduct(Product product) =>
       _cartProducts.any((cp) => cp.product == product);
+
+  void _listenForCartProducts() {
+    _cartRepository.cartProducts.listen((event) {
+      _cartProducts.clear();
+      _cartProducts.addAll(event);
+      notifyListeners();
+    });
+  }
 }

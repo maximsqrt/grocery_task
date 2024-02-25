@@ -1,31 +1,44 @@
 import 'package:flutter/cupertino.dart';
+import 'package:grocery_task/common/data/wishlist_repository.dart';
 import 'package:grocery_task/common/domain/product.dart';
 
 class WishlistController extends ChangeNotifier {
-  WishlistController();
+  WishlistController({required wishlistRepository})
+      : _wishlistRepository = wishlistRepository {
+    _listenForProducts();
+  }
 
-  final List<Product> _items = [];
+  final WishlistRepository _wishlistRepository;
+  final List<Product> _wishlistProducts = [];
 
-  List<Product> get products => _items;
+  List<Product> get products => _wishlistProducts;
 
-  void _addProduct(Product product) {
-    _items.add(product);
+  void addProduct(Product product) {
+    _wishlistRepository.addProduct(product);
     notifyListeners();
   }
 
-  void _removeProduct(Product product) {
-    _items.remove(product);
+  void removeProduct(Product product) async {
+    _wishlistRepository.removeProduct(product);
     notifyListeners();
   }
 
-  bool containsProduct(Product product) => _items.contains(product);
+  bool containsProduct(Product product) => _wishlistProducts.contains(product);
 
   void toggleProduct(Product product) {
     if (containsProduct(product)) {
-      _removeProduct(product);
+      removeProduct(product);
     } else {
-      _addProduct(product);
+      addProduct(product);
     }
     notifyListeners();
+  }
+
+  void _listenForProducts() {
+    _wishlistRepository.products.listen((event) {
+      _wishlistProducts.clear();
+      _wishlistProducts.addAll(event);
+      notifyListeners();
+    });
   }
 }

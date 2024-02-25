@@ -8,6 +8,7 @@ class CategoryController extends ChangeNotifier {
     // Fetch and add initial categories.
     final categories = _categoryRepository.getCategories();
     _categories.addAll(categories);
+    notifyListeners();
   }
 
   final CategoryRepository _categoryRepository;

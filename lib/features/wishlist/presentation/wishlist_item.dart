@@ -77,16 +77,16 @@ class WishlistItem extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        cartController.addProduct(product);
+                        cartController.removeProduct(product);
                       },
-                      icon: const Icon(Icons.add),
+                      icon: const Icon(Icons.remove),
                     ),
                     Text(cartProductCount.toString()),
                     IconButton(
                       onPressed: () {
-                        cartController.removeProduct(product);
+                        cartController.addProduct(product);
                       },
-                      icon: const Icon(Icons.remove),
+                      icon: const Icon(Icons.add),
                     ),
                   ],
                 ),
