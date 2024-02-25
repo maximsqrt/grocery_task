@@ -2,7 +2,7 @@ import 'package:grocery_task/common/domain/category.dart';
 import 'package:grocery_task/common/domain/product.dart';
 import 'package:grocery_task/common/domain/product_badge.dart';
 
-const List<Category> categoriesMock = [
+const List<Category> mockCategories = [
   Category(
     name: 'Vegetable',
     iconAsset: 'assets/icons/vegetables.png',
@@ -35,7 +35,7 @@ const List<Category> categoriesMock = [
   ),
 ];
 
-final List<Product> productsMock = [
+final List<Product> mockProducts = [
   const Product(
     name: 'Fresh Peach',
     description: 'dozen',

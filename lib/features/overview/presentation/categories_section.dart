@@ -8,7 +8,7 @@ class CategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = context.read<CategoryController>().categories;
+    final categories = context.watch<CategoryController>().categories;
 
     return SizedBox(
       height: 100,

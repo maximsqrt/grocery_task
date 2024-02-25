@@ -5,8 +5,7 @@ import 'package:grocery_task/features/overview/data/product_repository.dart';
 class ProductController extends ChangeNotifier {
   ProductController({required productRepository})
       : _productsRepository = productRepository {
-    // Fetch products initially
-    _products.addAll(_productsRepository.getProducts());
+    _listenForProducts();
   }
 
   final ProductRepository _productsRepository;
@@ -14,14 +13,11 @@ class ProductController extends ChangeNotifier {
 
   List<Product> get products => _products;
 
-  void addProduct(Product product) {
-    _products.add(product);
+  void _listenForProducts() {
+    _productsRepository.products.listen((event) {
+      _products.clear();
+      _products.addAll(event);
+      notifyListeners();
+    });
   }
-
-  void removeProduct(Product product) => _products.remove(product);
-
-  int getQuantityForProduct(Product product) =>
-      _products.where((element) => element == product).length;
-
-  bool containsProduct(Product product) => _products.contains(product);
 }

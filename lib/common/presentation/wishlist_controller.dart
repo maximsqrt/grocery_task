@@ -5,7 +5,7 @@ import 'package:grocery_task/common/domain/product.dart';
 class WishlistController extends ChangeNotifier {
   WishlistController({required wishlistRepository})
       : _wishlistRepository = wishlistRepository {
-    _listenForProducts();
+    _listenForWishlistProducts();
   }
 
   final WishlistRepository _wishlistRepository;
@@ -34,7 +34,7 @@ class WishlistController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _listenForProducts() {
+  void _listenForWishlistProducts() {
     _wishlistRepository.products.listen((event) {
       _wishlistProducts.clear();
       _wishlistProducts.addAll(event);
