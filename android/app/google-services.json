@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1069285788643",
+    "project_id": "grocery-task-maximsqrt",
+    "storage_bucket": "grocery-task-maximsqrt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069285788643:android:1b2396c7be87acde826ed6",
+        "android_client_info": {
+          "package_name": "com.example.grocery_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH83gpqYd-M2weVhJAbmuBUzJTZSqGDtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

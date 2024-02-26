@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:grocery_task/common/domain/product.dart';
 import 'package:grocery_task/features/cart/domain/cart_product.dart';
 
+
+
 class CartRepository {
   // Soll von Firestore kommen.
   final _tmpCartProductsList = <CartProduct>[];
@@ -42,3 +44,4 @@ class CartRepository {
   bool _containsProduct(Product product) =>
       _tmpCartProductsList.any((cp) => cp.product == product);
 }
+
