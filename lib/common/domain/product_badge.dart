@@ -6,4 +6,6 @@ class ProductBadge {
 
   final String name;
   final int colorValue;
+
+  static fromFirestore(data) {}
 }

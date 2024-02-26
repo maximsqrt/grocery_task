@@ -14,7 +14,7 @@ class ProductController extends ChangeNotifier {
   List<Product> get products => _products;
 
   void _listenForProducts() {
-    _productsRepository.products.listen((event) {
+    _productsRepository.products.listen((List<Product>event) {
       _products.clear();
       _products.addAll(event);
       notifyListeners();

@@ -8,24 +8,26 @@ import 'package:grocery_task/features/overview/data/category_repository.dart';
 import 'package:grocery_task/features/overview/data/product_repository.dart';
 import 'package:grocery_task/features/overview/presentation/controllers/category_controller.dart';
 import 'package:grocery_task/features/overview/presentation/controllers/product_controller.dart';
-import 'package:grocery_task/firebase_options.dart';
 import 'package:grocery_task/grocery_app.dart';
 import 'package:provider/provider.dart';
 
 
 
 
-/// Wichtig war MultiProvider innerhalb der Build Methode von MyApp aufzurufen, damit sichergestellt ist, 
-/// dass es nach der Initialisierung von Firebase aufgerufen wird.
+// /// Wichtig war MultiProvider innerhalb der Build Methode von MyApp aufzurufen, damit sichergestellt ist, 
+// /// dass es nach der Initialisierung von Firebase aufgerufen wird.
 
 
 
 
 void main() {
+  
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
-          return Text('Es ist ein Fehler aufgetreten');
+          return const Text('Es ist ein Fehler aufgetreten');
         }
 
         
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
               ),
               ChangeNotifierProvider<CategoryController>(
                 create: (context) => CategoryController(
-                  categoryRepository: CategoryRepository(),
+                  
                 ),
               ),
               ChangeNotifierProvider<CartController>(
@@ -65,8 +67,22 @@ class MyApp extends StatelessWidget {
         }
 
         
-        return CircularProgressIndicator();
+        return const CircularProgressIndicator();
       },
     );
   }
 }
+
+
+
+
+/////// Nur zur einmalausführung, die hardcode items auf Firebase zu packen
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(); // Firebase initialisieren
+//   await uploadCategoryToFirebase(); // Produkte hochladen
+  
+//   runApp(MyApp());
+// }
+// Einmal Alle Product hochgeballert :) 
